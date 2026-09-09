@@ -1,10 +1,18 @@
 * {
   margin: 0;
   padding: 0;
+  /* background: #3a3a3a; */
 }
 
 .nav-bar {
   height: 60px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  font-size: 30px;
 }
 
 .center {

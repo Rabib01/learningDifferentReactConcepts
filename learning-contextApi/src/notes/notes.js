@@ -68,5 +68,13 @@ remove online listener     remove offline listener
    *  useEffect - "When my component enters the world, set this external thing up; when my component leaves the world, clean that external thing up."
    *  Now imagine you also want to use the same logic in a different component. You want to implement a Save button that will become disabled and show “Reconnecting…” instead of “Save” while the network is off.
    * 
-   */
+// React component names must start with a capital letter, like StatusBar and SaveButton. React components also need to return something that React knows how to display, like a piece of JSX.
+// Hook names must start with use followed by a capital letter, like useState (built-in) or useOnlineStatus (custom, like earlier on the page). Hooks may return arbitrary values.
+  * 
+  * In the earlier example, when you turned the network on and off, both components updated together. However, it’s wrong to think that a single isOnline state variable is shared between them. Look at this code:
+  * 
+Custom Hooks let you share stateful logic but not state itself. Each call to a Hook is completely independent from every other call to the same Hook. This is why the two sandboxes above are completely equivalent. If you’d like, scroll back up and compare them. The behavior before and after extracting a custom Hook is identical.
+
+When you need to share the state itself between multiple components, lift it up and pass it down instead.
+  */
 }

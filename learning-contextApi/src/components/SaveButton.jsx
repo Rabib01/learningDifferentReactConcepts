@@ -26,3 +26,13 @@ export default function SaveButton() {
     </button>
   );
 }
+
+/**
+ * disabled = {isOnline}
+ * is online - true - disabled - true
+ * is online - false - disabled - false
+ *
+ * disabled = {!isOnline}
+ * is onlime = true - !isOnline = false - disabled = false
+ * isOnline = false - !isOnline = true - disabled = true
+ */
