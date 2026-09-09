@@ -25,7 +25,7 @@ export function useFormInput(initialValue) {
 
   const inputProps = {
     value,
-    onCinhange: hangleChange,
+    onChange: hangleChange,
   };
 
   return inputProps;

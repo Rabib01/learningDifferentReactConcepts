@@ -76,5 +76,67 @@ remove online listener     remove offline listener
 Custom Hooks let you share stateful logic but not state itself. Each call to a Hook is completely independent from every other call to the same Hook. This is why the two sandboxes above are completely equivalent. If you’d like, scroll back up and compare them. The behavior before and after extracting a custom Hook is identical.
 
 When you need to share the state itself between multiple components, lift it up and pass it down instead.
+
+
+When to use custom Hooks 
+You don’t need to extract a custom Hook for every little duplicated bit of code. 
+Some duplication is fine. 
+For example, extracting a useFormInput Hook to wrap a single useState call
+ like earlier is probably unnecessary.
+
+However, whenever you write an Effect, consider whether it would be clearer to also wrap it in a 
+custom Hook. You shouldn’t need Effects very often, so if you’re writing one, 
+it means that you need to “step outside React” to synchronize with some external system or to
+do something that React doesn’t have a built-in API for. Wrapping it into a custom Hook lets 
+you precisely communicate your intent and how the data flows through it.
+
+For example, consider a ShippingForm component that displays two dropdowns: one 
+shows the list of cities, and another shows the list of areas in the selected city. 
+You might start with some code that looks like this:
+
+You make the data flow to and from your Effects very explicit.
+You let your components focus on the intent rather than on the exact implementation of your Effects.
+When React adds new features, you can remove those Effects without changing any of your components
+
+Recap : 
+Custom Hooks let you share logic between components.
+Custom Hooks must be named starting with use followed by a capital letter.
+Custom Hooks only share stateful logic, not state itself.
+You can pass reactive values from one Hook to another, and they stay up-to-date.
+All Hooks re-run every time your component re-renders.
+The code of your custom Hooks should be pure, like your component’s code.
+Wrap event handlers received by custom Hooks into Effect Events.
+Don’t create custom Hooks like useMount. Keep their purpose specific.
+It’s up to you how and where to choose the boundaries of your code.
+
   */
+}
+
+/** First Custom Hook */
+
+{
+  App.js;
+  // Write your custom Hook in this file!
+  import { useCounter } from "./useCounter.js";
+
+  export default function Counter() {
+    const count = useCounter(0);
+    return <h1>Seconds passed: {count}</h1>;
+  }
+}
+
+{
+  useCounter.js;
+  import { useState, useEffect } from "react";
+
+  export function useCounter(second) {
+    const [count, setCount] = useState(second);
+    useEffect(() => {
+      const id = setInterval(() => {
+        setCount((second) => second + 1);
+      }, 1000);
+      return () => clearInterval(id);
+    }, []);
+    return count;
+  }
 }
