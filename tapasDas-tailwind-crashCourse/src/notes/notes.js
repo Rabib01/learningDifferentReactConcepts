@@ -38,3 +38,20 @@
    * Then @import "tailwindcss"; on index.css
    */
 }
+
+{
+  /**
+   * Directives and plugin - research later
+   */
+}
+{
+  // @layer components {
+  //   .card {
+  //     background-color: var(--color-white);
+  //     border-radius: var(--radius-lg);
+  //     padding: --spacing(6);
+  //     box-shadow: var(--shadow-xl);
+  //   }
+  // }
+  // Very important shit - use components and research thorouly later
+}
